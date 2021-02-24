@@ -3,9 +3,14 @@ $host = "localhost";
 $userName = "root";
 $password = "";
 $dbName = "mbdb";
+
+// data source name
+$dsn = 'mysql:host='. $host .';dbname='. $dbName;
+
+
 // Create database connection
-$conn = new mysqli($host, $userName, $password, $dbName);
-// Check connection
-if ($conn->connect_error) {
-die("Connection failed: " . $conn->connect_error);
-}
+$conn = new PDO($dsn, $userName, $password);
+$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+
+

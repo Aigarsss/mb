@@ -1,12 +1,23 @@
 <?php
 // echo "<pre>";
 
+require 'config.php';
 
-// print_r($_POST);
+//insert data
 
-// echo "</pre>";
+if (isset($_POST['email']) && !empty($_POST['email'])) {
+  $inputEmail = $_POST['email'];
+  
+  $domain = substr($inputEmail, strpos($inputEmail, '@') + 1);
 
-// $email = $_POST['email'];
+  $provider = substr($inputEmail, strpos($inputEmail, '@') + 1, strpos($domain, '.'));
+
+  $query = 'INSERT INTO subscribers(email, provider ) VALUES(:email, :provider)';
+  $statement = $conn->prepare($query);
+  $statement->execute(['email' => $inputEmail, 'provider' => $provider]);
+  echo 'Subscriber Added';
+
+}
 
 ?>
 
@@ -58,7 +69,7 @@
 
 
     <!-- FORM -->
-    <form id="form" action="index.php" method="POST">
+    <form id="form" action="" method="POST">
       <div class="inputarea">
         <input id="email" type="email" placeholder="Type your email address here..." name="email">
         <button type="submit" id="emailSubmit"></button>
