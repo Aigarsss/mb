@@ -1,10 +1,4 @@
 <?php
-// echo "<pre>";
-
-require 'Model.php';
-$model = new Model();
-$insert = $model->insert();
-
 
 ?>
 
@@ -13,7 +7,7 @@ $insert = $model->insert();
 
 <head>
   <meta charset="utf-8">
-  <title>Pineapple Inc</title>
+  <title>Success</title>
   <meta name="description" content="Buy your pineapple sunglasses here">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,7 +35,7 @@ $insert = $model->insert();
 
     <div class = "navbar-links">
       <ul>
-          <li><a href="/subscribers.php" class="menu-item">About</a></li>
+          <li><a href="#" class="menu-item">About</a></li>
           <li><a href="#" class="menu-item">How it works</a></li>
           <li><a href="#" class="menu-item">Contact</a></li>
       </ul>
@@ -51,32 +45,11 @@ $insert = $model->insert();
   <div id="container">
 
     <div id="main">
-    <h1>Subscribe to newsletter</h1>
-    <p>Subscribe to our newsletter and get 10% discount on pinapple glasses.</p>
 
-
-    <!-- FORM -->
-    <form id="form" action="" method="POST">
-      <div class="inputarea">
-        <input id="email" type="email" placeholder="Type your email address here..." name="email">
-        <button name="submit" type="submit" id="emailSubmit"></button>
-      </div>
-      
-      <div id="error"></div>
-      <div id="termsError">
-        
-      </div>
-    
-    <div class="termsarea">
-
-      <label class="terms" for="termsCheckbox">
-        <input id="termsCheckbox" type="checkbox" name="terms" id="terms" value="checked">
-        <span class="checkmark"></span>
-        I agree to <a href="#">terms of service</a>
-      </label>
-    </div>
-
-    </form>
+    <div id='successIcon'></div>
+    <h1>Thanks for subscribing!</h1>
+    <p>You have successfully subscribed to our email listing. Check your email for the discount code.</p>
+    <br>
 
   </div>
 

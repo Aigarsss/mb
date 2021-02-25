@@ -22,6 +22,7 @@ function validateEmail(email) {
 
         if (window.getComputedStyle(error).visibility === "hidden") {
             submitButton.disabled = false;
+            validated();
         }
 
         } else {
@@ -70,25 +71,27 @@ userMail.addEventListener('input', (e) => {
         
         if (checkbox.checked) {
             submitButton.disabled = false;
+            validated();
         }
 
-        // submitButton.style.height = "14px";
     }
 
   });
 
 
-//handle the success screen in JS
+//handle the success screen in JS on submit
 
 //   submitButton.addEventListener('click', e => {
 
 //     e.preventDefault();
-//     console.log("pressed")
-
-//     document.getElementById('main').innerHTML = 
-//     "<div id='successIcon'></div>" +
-//     "<h1>Thanks for subscribing!</h1>" +
-//     "<p>You have successfully subscribed to our email listing. Check your email for the discount code.</p>" +
-//     "<br>"
+//     validated();
 
 //     });
+
+let validated = () => {
+    document.getElementById('main').innerHTML = 
+    "<div id='successIcon'></div>" +
+    "<h1>Thanks for subscribing!</h1>" +
+    "<p>You have successfully subscribed to our email listing. Check your email for the discount code.</p>" +
+    "<br>"
+}
