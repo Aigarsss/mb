@@ -21,7 +21,6 @@
 
         
         // insert records
-
         public function insert(){
 
             if (isset($_POST['submit'])) {
@@ -62,7 +61,6 @@
         }
 
         //read records
-
         public function readAll(){
 
             $statement = $this->conn->prepare("SELECT * FROM SUBSCRIBERS order by date desc");
@@ -87,8 +85,13 @@
             }    
         }
 
-        
+        // filter buttons for subscribers.php
         public function getProviders(){
+  
+                // $_SESSION["search"] 
+                // $_SESSION["filter"] 
+                // $_SESSION["order"]
+                // $_SESSION["direction"] 
 
             try {
 
@@ -105,23 +108,39 @@
 
         }
 
+        // filtering for the subscribers.php page
         public function filterProvider(){
+
+            // simplified ordering
+
+            if (isset($_GET['orderBy']) && isset($_GET['direction'])) {
+                $ordering = $_GET['orderBy'];
+                $direction = $_GET['direction'];
+
+                $statement = $this->conn->prepare("select * from subscribers order by $ordering $direction");
+                $statement->execute();
+
+                $data = $statement->fetchAll();
+
+                return $data;
+            }
+
 
             if (isset($_GET['filter'])) {
                 $filter = $_GET['filter'];
 
-                if ($filter == "" && isset($_GET['search'])) {
+                if ($filter == "search" && isset($_GET['search'])) {
                     
                     $searchTerm = $_GET['search'];
 
-                    $statement = $this->conn->prepare("select * from subscribers where email like CONCAT('%', :searchTerm, '%')");
+                    $statement = $this->conn->prepare("select * from subscribers where email like CONCAT('%', :searchTerm, '%') order by date desc");
                     $statement->execute(["searchTerm" => $searchTerm]);
 
                 } else if ($filter == "All") {
-                    $statement = $this->conn->prepare("select * from subscribers");
+                    $statement = $this->conn->prepare("select * from subscribers  order by date desc");
                     $statement->execute();
                 } else {
-                    $statement = $this->conn->prepare("select * from subscribers where provider = :filter");
+                    $statement = $this->conn->prepare("select * from subscribers where provider = :filter order by date desc");
                     $statement->execute(["filter" => $filter]);
                 }
 

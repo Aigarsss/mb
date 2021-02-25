@@ -1,6 +1,18 @@
 <?php
 
-// require 'Model.php';
+// session_start();
+
+// if (isset($_GET['search'])) {
+//     $_SESSION["search"] = $_GET['search'];
+// } if (isset($_GET['filter'])) {
+//     $_SESSION["filter"] = $_GET['filter'];
+// } if (isset($_GET['orderBy'])) {
+//     $_SESSION["order"] = $_GET['orderBy'];
+// } if (isset($_GET['direction'])) {
+//     $_SESSION["direction"] = $_GET['direction'];
+// }
+
+// print_r($_SESSION);
 
 require 'Model.php';
 $model = new Model();
@@ -33,8 +45,8 @@ $model = new Model();
     <a href="/index.php">Back</a>
 
     <form action="" method="GET" style="margin-bottom: 15px; padding: 5px;">
-        <input type="text" name="search" placeholder="Search..." style="padding: 5px;>
-        <button name="filter"> Search</button>
+        <input type="text" name="search" placeholder="Search..." style="padding: 5px;">
+        <button name="filter" value="search"> Search</button>
     </form>
 
     <form action="" method="GET">
@@ -60,15 +72,23 @@ $model = new Model();
     <table>
         <tr>
             <td>ID</td>
-            <td>Date</td>
-            <td>Email</td>
+            <td>Date <a href="?orderBy=date&direction=asc">asc</a> <a href="?orderBy=date&direction=desc">desc</a></td>
+            <td>Email <a href="?orderBy=email&direction=asc">asc</a> <a href="?orderBy=email&direction=desc">desc</a></td>
             <td>Provider</td>
             <td>Action</td>
         </tr>
         
         <?php 
+        // should be updated to use a combo search + add sorting
+        //(isset($_GET['filter']) || isset($_GET['orderBy'])) ? $rows = $model->filterProvider() : $rows = $model->readAll(); 
 
-        (isset($_GET['filter'])) ? $rows = $model->filterProvider() : $rows = $model->readAll(); 
+        if (isset($_GET['filter'])) {
+            $rows = $model->filterProvider();
+        } else if (isset($_GET['orderBy'])){
+            $rows = $model->filterProvider();
+        } else {
+            $rows = $model->readAll();
+        }
 
         if(!empty($rows)) {
             foreach($rows as $row) {

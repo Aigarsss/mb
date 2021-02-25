@@ -1,5 +1,6 @@
 <?php
 // phpinfo();
+
 require 'Model.php';
 $model = new Model();
 $insert = $model->insert();

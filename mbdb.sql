@@ -33,7 +33,31 @@ INSERT INTO `subscribers` (`id`, `date`, `email`, `provider`) VALUES
 	(36, '2021-02-25 16:27:34', 'test1@gmail.com', 'gmail'),
 	(37, '2021-02-25 16:27:41', 'test2@gmail.com', 'gmail'),
 	(38, '2021-02-25 16:27:51', 'test1@yahoo.com', 'yahoo'),
-	(39, '2021-02-25 16:27:57', 'test2@yahoo.com', 'yahoo');
+	(39, '2021-02-25 16:27:57', 'test2@yahoo.com', 'yahoo'),
+	(40, '2021-02-25 17:13:26', 'tester@mail.com', 'mail'),
+	(41, '2021-02-25 17:13:49', 'tester2@mail.com', 'mail'),
+	(42, '2021-02-25 17:14:13', '123@gmail.com', 'gmail'),
+	(43, '2021-02-25 17:15:14', '345@gmail.com', 'gmail'),
+	(44, '2021-02-25 17:15:40', 'next@lv.lv', 'lv'),
+	(45, '2021-02-25 17:15:55', 'info@lv.lv', 'lv'),
+	(46, '2021-02-25 19:11:55', 'ann@test2.com', 'test2'),
+	(47, '2021-02-25 19:11:55', 'shawn@test2.com', 'test2'),
+	(48, '2021-02-25 19:11:55', 'mike@gmail.com', 'gmail'),
+	(49, '2021-02-25 19:11:55', 'james@gmail.com', 'gmail'),
+	(50, '2021-02-25 19:11:55', 'test1@one.lv', 'one'),
+	(51, '2021-02-25 19:11:55', 'test2@one.lv', 'one'),
+	(52, '2021-02-25 19:13:21', 'kate@test2.com', 'test2'),
+	(53, '2021-02-25 19:13:21', 'anna@test2.com', 'test2'),
+	(54, '2021-02-25 19:13:21', 'david@gmail.com', 'gmail'),
+	(55, '2021-02-25 19:13:21', 'lana@gmail.com', 'gmail'),
+	(56, '2021-02-25 19:13:21', 'sergei@yahoo.lv', 'yahoo'),
+	(57, '2021-02-25 19:13:21', 'anatoly@yahoo.lv', 'yahoo'),
+	(58, '2021-02-25 19:14:26', 'kate1@gmail.com', 'gmail'),
+	(59, '2021-02-25 19:14:26', 'anna1@gmail.com', 'gmail'),
+	(60, '2021-02-25 19:14:26', 'david1@gmail.com', 'gmail'),
+	(61, '2021-02-25 19:14:26', 'lana1@gmail.com', 'gmail'),
+	(62, '2021-02-25 19:14:26', 'sergei1@gmail.lv', 'gmail'),
+	(63, '2021-02-25 19:14:26', 'anatoly1@gmail.lv', 'gmail');
 /*!40000 ALTER TABLE `subscribers` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

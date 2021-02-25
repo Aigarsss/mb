@@ -98,7 +98,7 @@ body {
           align-items: center;
   width: 235px;
   height: 100%;
-  padding-right: 20px;
+  padding-right: 10px;
 }
 
 .navbar .navbar-links ul li {
@@ -112,6 +112,7 @@ body {
   line-height: 24px;
   color: #6A707B;
   display: block;
+  text-align: left;
 }
 
 #container {
@@ -470,7 +471,7 @@ table, th, td {
     z-index: -2;
   }
   .navbar {
-    width: 85%;
+    width: 80%;
     margin: auto;
     margin-top: 100px;
   }
@@ -482,10 +483,23 @@ table, th, td {
     background: url("../img/logo_pineapple.svg");
     background-repeat: no-repeat;
   }
+  .navbar .navbar-links ul {
+    width: auto;
+  }
+  .navbar .navbar-links ul li {
+    padding-left: 30px;
+  }
+  .navbar .navbar-links ul li a {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0em;
+  }
   #container {
     background: none;
     height: 371px;
-    width: 70%;
+    width: 65%;
     padding: 0px 20px;
     margin-top: 10%;
   }
