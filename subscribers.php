@@ -27,13 +27,14 @@ $model = new Model();
 
 </head>
 
-<body style ="overflow: scroll; position: static;">
+<body style ="overflow: scroll; position: static; margin: 15px;">
 
     <h1 style="margin-bottom: 15px;">Subscribers</h1>
+    <a href="/index.php">Back</a>
 
-    <form action="" method="GET" style="margin-bottom: 15px;">
-        <input type="text" name="search" placeholder="Search...">
-        <button name="filter">Search</button>
+    <form action="" method="GET" style="margin-bottom: 15px; padding: 5px;">
+        <input type="text" name="search" placeholder="Search..." style="padding: 5px;>
+        <button name="filter"> Search</button>
     </form>
 
     <form action="" method="GET">

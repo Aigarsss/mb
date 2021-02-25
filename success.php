@@ -35,7 +35,7 @@
 
     <div class = "navbar-links">
       <ul>
-          <li><a href="#" class="menu-item">About</a></li>
+          <li><a href="/subscribers.php" class="menu-item">About</a></li>
           <li><a href="#" class="menu-item">How it works</a></li>
           <li><a href="#" class="menu-item">Contact</a></li>
       </ul>
