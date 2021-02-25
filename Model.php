@@ -87,11 +87,7 @@
 
         // filter buttons for subscribers.php
         public function getProviders(){
-  
-                // $_SESSION["search"] 
-                // $_SESSION["filter"] 
-                // $_SESSION["order"]
-                // $_SESSION["direction"] 
+
 
             try {
 
@@ -111,44 +107,76 @@
         // filtering for the subscribers.php page
         public function filterProvider(){
 
-            // simplified ordering
 
-            if (isset($_GET['orderBy']) && isset($_GET['direction'])) {
-                $ordering = $_GET['orderBy'];
-                $direction = $_GET['direction'];
+            // need to check, otherwise throws undefined index error
+            if (isset($_SESSION["search"])) {
+                $search = $_SESSION["search"];
+            } if (isset($_SESSION["filter"])) {
+                $filter = $_SESSION["filter"];
+            } if (isset($_SESSION["order"])) {
+                $order = $_SESSION["order"];
+            } if (isset($_SESSION["direction"])) {
+                $direction = $_SESSION["direction"];
+            }
 
-                $statement = $this->conn->prepare("select * from subscribers order by $ordering $direction");
+
+            // reset filters
+            if (isset($filter) && $filter == "Reset") {
+
+                unset($_SESSION["search"]);
+                unset($_SESSION["filter"] );
+                unset($_SESSION["order"]);
+                unset($_SESSION["direction"]);
+
+                header("Location: /subscribers.php");
+                exit();
+            }
+
+            // case when all are set
+            if (isset($search) && isset($filter) && isset($order) && isset($direction)) {
+
+                $statement = $this->conn->prepare("select * from subscribers where provider = :filter and email like CONCAT('%', :search, '%') order by $order $direction");
+                $statement->execute(["filter" => $filter, "search" => $search]);
+
+            }
+            // case when provider + order set
+           else if (isset($filter) && isset($order) && isset($direction)) {
+
+                $statement = $this->conn->prepare("select * from subscribers where provider = :filter order by $order $direction");
+                $statement->execute(["filter" => $filter]);
+                
+            }
+            // case when search + order set
+            else if (isset($search) && isset($order) && isset($direction)) {
+
+                $statement = $this->conn->prepare("select * from subscribers where email like CONCAT('%', :search, '%') order by $order $direction");
+                $statement->execute([ "search" => $search]);
+            }           
+
+            // case when provider + search set
+            else if (isset($search) && isset($filter)) {
+
+                $statement = $this->conn->prepare("select * from subscribers where provider = :filter and email like CONCAT('%', :search, '%') order by date desc");
+                $statement->execute(["filter" => $filter, "search" => $search]);
+
+            } else if (isset($search)) {
+                echo "got here";
+                $statement = $this->conn->prepare("select * from subscribers where email like CONCAT('%', :search, '%') order date desc");
+                $statement->execute([ "search" => $search]);
+            
+            } else if (isset($filter)) {
+
+                $statement = $this->conn->prepare("select * from subscribers where provider = :filter order by date desc");
+                $statement->execute(["filter" => $filter]);
+
+            } else if (isset($order) && isset($direction)) {
+                $statement = $this->conn->prepare("select * from subscribers order by $order $direction");
                 $statement->execute();
-
-                $data = $statement->fetchAll();
-
-                return $data;
             }
 
+            $data = $statement->fetchAll();
 
-            if (isset($_GET['filter'])) {
-                $filter = $_GET['filter'];
-
-                if ($filter == "search" && isset($_GET['search'])) {
-                    
-                    $searchTerm = $_GET['search'];
-
-                    $statement = $this->conn->prepare("select * from subscribers where email like CONCAT('%', :searchTerm, '%') order by date desc");
-                    $statement->execute(["searchTerm" => $searchTerm]);
-
-                } else if ($filter == "All") {
-                    $statement = $this->conn->prepare("select * from subscribers  order by date desc");
-                    $statement->execute();
-                } else {
-                    $statement = $this->conn->prepare("select * from subscribers where provider = :filter order by date desc");
-                    $statement->execute(["filter" => $filter]);
-                }
-
-                $data = $statement->fetchAll();
-    
-                return $data;
-
-            }
+            return $data;
 
         }
 

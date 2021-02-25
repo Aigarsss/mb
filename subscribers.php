@@ -1,18 +1,16 @@
 <?php
 
-// session_start();
+session_start();
 
-// if (isset($_GET['search'])) {
-//     $_SESSION["search"] = $_GET['search'];
-// } if (isset($_GET['filter'])) {
-//     $_SESSION["filter"] = $_GET['filter'];
-// } if (isset($_GET['orderBy'])) {
-//     $_SESSION["order"] = $_GET['orderBy'];
-// } if (isset($_GET['direction'])) {
-//     $_SESSION["direction"] = $_GET['direction'];
-// }
-
-// print_r($_SESSION);
+if (isset($_GET['search'])) {
+    $_SESSION["search"] = $_GET['search'];
+} if (isset($_GET['filter'])) {
+    $_SESSION["filter"] = $_GET['filter'];
+} if (isset($_GET['orderBy'])) {
+    $_SESSION["order"] = $_GET['orderBy'];
+} if (isset($_GET['direction'])) {
+    $_SESSION["direction"] = $_GET['direction'];
+}
 
 require 'Model.php';
 $model = new Model();
@@ -42,17 +40,31 @@ $model = new Model();
 <body style ="overflow: scroll; position: static; margin: 15px;">
 
     <h1 style="margin-bottom: 15px;">Subscribers</h1>
+
+    <p> Applied filters: 
+    
+    <?php
+
+        foreach($_SESSION as $name => $value){
+            echo $name."=".$value." | ";
+        }
+        // print_r($_SESSION);
+
+    ?>
+    
+    </p>
+
     <a href="/index.php">Back</a>
 
     <form action="" method="GET" style="margin-bottom: 15px; padding: 5px;">
         <input type="text" name="search" placeholder="Search..." style="padding: 5px;">
-        <button name="filter" value="search"> Search</button>
+        <button> Search</button>
     </form>
 
     <form action="" method="GET">
         <div> Filter: 
 
-            <button type="sumbit" name = "filter" value = "All" style="margin: 5px; padding: 5px;">All</button>
+            <button type="sumbit" name = "filter" value = "Reset" style="margin: 5px; padding: 5px;">Reset</button>
             <?php 
             $rows = $model->getProviders();
 
