@@ -1,10 +1,14 @@
 <?php
-// echo "<pre>";
-
+// phpinfo();
 require 'Model.php';
 $model = new Model();
 $insert = $model->insert();
 
+// if (sizeof($model->errors) == 0) {
+//   echo "ok";
+// } else {
+//   echo $model->errors; 
+// }
 
 ?>
 
@@ -34,7 +38,6 @@ $insert = $model->insert();
   <nav class="navbar">
     <div id="logo">
       <a href="/">
-        <!-- <img src="img/logo_pineapple_mobile.svg" alt="pineapple_logo"> -->
         <div class="image"></div>
       </a>
     </div>
@@ -62,7 +65,18 @@ $insert = $model->insert();
         <button name="submit" type="submit" id="emailSubmit"></button>
       </div>
       
-      <div id="error"></div>
+      <div id="error">
+
+      <?php 
+
+        if (sizeof($insert) > 0) {
+          foreach($insert as $error) {
+            echo $error . " <br>";
+          }
+        }
+      ?>
+      
+      </div>
       <div id="termsError">
         
       </div>

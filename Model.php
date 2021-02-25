@@ -24,9 +24,14 @@
 
         public function insert(){
 
-            // ["terms"] = "checked"
-
             if (isset($_POST['submit'])) {
+     
+                $errors = $this->validate();
+                // - Return the errors
+                if (sizeof($errors) > 0) {
+                    return $errors;
+                }
+
 
                 if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['terms'])) {
                 
@@ -38,8 +43,6 @@
 
                         $statement = $this->conn->prepare("insert into subscribers(email, provider ) VALUES(:email, :provider)");
                         $statement->execute(['email' => $inputEmail, 'provider' => $provider]);
-                        echo 'Subscriber Added';
-
 
                         // var_dump($_POST);
                         header("Location: /success.php");
@@ -50,14 +53,12 @@
                     }
 
                 } else {
-                    //echo "something went wrong";
+                    // error handling
+                    echo "Something went wrong";
+
                 }
 
-            } else {
-                //echo "something went wrong2";
-            }
-
-    // }
+            } 
         }
 
         //read records
@@ -132,6 +133,31 @@
 
         }
 
+        private function validate(){
+
+            $errors = array();
+
+            // - Provided email is ending with .co - “We are not accepting subscriptions from Colombia emails”.
+            if (preg_match('/.co$/', $_POST["email"])) {
+                $errors["co"] = "We are not accepting subscriptions from Colombia emails";
+            }
+
+            // - No email address is provided - “Email address is required”
+            if (!isset($_POST['email']) || empty($_POST['email'])) {
+                $errors["email"] = "Missing email";
+            } else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {           // - Invalid email is added - “Please provide a valid e-mail address”
+                    $errors["invalidEmail"] = "Please provide a valid e-mail address";
+                    }
+
+
+            // - The checkbox is not marked - “You must accept the terms and conditions”
+            if (!isset($_POST['terms'])) {
+                $errors["checkbox"] = "You must accept the terms and conditions";
+            }
+
+            return $errors;
+
+        }
 }
 
 ?>
