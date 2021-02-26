@@ -1,15 +1,8 @@
 <?php
-// phpinfo();
 
 require 'Model.php';
 $model = new Model();
 $insert = $model->insert();
-
-// if (sizeof($model->errors) == 0) {
-//   echo "ok";
-// } else {
-//   echo $model->errors; 
-// }
 
 ?>
 
@@ -36,21 +29,21 @@ $insert = $model->insert();
 <body>
 
   <nav class = "split left">
-  <nav class="navbar">
-    <div id="logo">
-      <a href="/">
-        <div class="image"></div>
-      </a>
-    </div>
+    <nav class="navbar">
+      <div id="logo">
+        <a href="/">
+          <div class="image"></div>
+        </a>
+      </div>
 
-    <div class = "navbar-links">
-      <ul>
-          <li><a href="/subscribers.php" class="menu-item">About</a></li>
-          <li><a href="#" class="menu-item">How it works</a></li>
-          <li><a href="#" class="menu-item">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+      <div class = "navbar-links">
+        <ul>
+            <li><a href="/subscribers.php" class="menu-item">About</a></li>
+            <li><a href="#" class="menu-item">How it works</a></li>
+            <li><a href="#" class="menu-item">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
 
   <div id="container">
 
@@ -78,8 +71,8 @@ $insert = $model->insert();
       ?>
       
       </div>
+
       <div id="termsError">
-        
       </div>
     
     <div class="termsarea">
@@ -103,17 +96,11 @@ $insert = $model->insert();
         <a href="#" class="icon icon-ic_twitter"></a>
         <a href="#" class="icon icon-ic_youtube"></a>
       </div>
-
     </div>
-  </nav>
-
-  <nav class="split right">
-  </nav>
-
   </div>
 
-
-
+  <div class="split right">
+  </div>
 
   <script src="js/main.js"></script>
 

@@ -5,51 +5,52 @@ let form = document.getElementById("form")
 let checkbox = document.getElementById("termsCheckbox")
 let submitButton = document.getElementById("emailSubmit")
 
+// Disable submit button if criteria not met
 submitButton.disabled = true;
-// submitButton.style.height = "50px";
 
+// Email validation regex from SO.
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 }
 
+// Checkbox listener. Listens if terms have been clicked.
+checkbox.addEventListener('change', function() {
+if (this.checked) {
+    termsError.style.visibility = "hidden";
 
-// checkbox listener 
-    checkbox.addEventListener('change', function() {
-    if (this.checked) {
-        termsError.style.visibility = "hidden";
-        console.log(errorElement.textContent)
-
-        if (window.getComputedStyle(error).visibility === "hidden") {
-            submitButton.disabled = false;
-            validated();
-        }
-
-        } else {
-        termsError.style.visibility = "visible";
-        termsError.innerHTML('You must accept the terms and conditions');
-
+    if (window.getComputedStyle(error).visibility === "hidden") {
+        submitButton.disabled = false;
+        validated();
     }
-    });
 
-
-  //click listener
-    userMail.addEventListener('click', function(e){
-
-        if ((userMail.value == "" ||  userMail.value == null) && (!errorElement.textContent.includes("Please provide a valid e-mail address"))) {
-
-        errorElement.insertAdjacentHTML('beforeend', 'Please provide a valid e-mail address');
-        termsError.insertAdjacentHTML('beforeend', 'You must accept the terms and conditions');
+} else {
+    termsError.style.visibility = "visible";
+    termsError.innerHTML('You must accept the terms and conditions');
     }
-  });
+});
 
 
-// todo, backspace not deteced, not sure how. Keudown, but then usermail value is not populated. So if user enters valid email, and then deletes it, user can still submit.
+// This shows the messages the first time the input is clicked
+userMail.addEventListener('click', function(e){
+
+    let checkCheckboxText = errorElement.textContent.includes("Please provide a valid e-mail address");
+    let checkTermsText = termsError.textContent.includes("You must accept the terms and conditions");
+
+    if ((userMail.value == "" ||  userMail.value == null) && ((!checkCheckboxText) && (!checkTermsText))) {
+
+    errorElement.insertAdjacentHTML('beforeend', 'Email address is required');
+    termsError.insertAdjacentHTML('beforeend', 'You must accept the terms and conditions');
+    }
+});
+
+
+// todo, backspace not deteced, not sure how. Keydown, but then usermail value is not populated. So if user enters valid email, and then deletes it, user can still submit.
 userMail.addEventListener('input', (e) => {
 
     let messages = [];
 
-    //to do, doesnt register if clicked in
+    //TODO. This doesnt really work, as just clicking in is not an input event.
     if (userMail.value == "" || userMail.value == null) {
         messages.push("Email address is required")
     }
@@ -58,13 +59,11 @@ userMail.addEventListener('input', (e) => {
         messages.push("Please provide a valid e-mail address")
     }
 
-
     if (userMail.value.endsWith(".co")) {
         messages.push("We are not accepting subscriptions from Colombia emails")
     }
 
     if (messages.length > 0) {
-        e.preventDefault();
         errorElement.innerHTML = messages.join(", </br>")
     } else {
         errorElement.style.visibility = "hidden";
@@ -73,19 +72,14 @@ userMail.addEventListener('input', (e) => {
             submitButton.disabled = false;
             validated();
         }
-
     }
+});
 
-  });
 
-
-//handle the success screen in JS on submit
-
+//handle the success screen in JS if suumbit is clicked. Need to change code and remove the "validated()" from the other functions
 //   submitButton.addEventListener('click', e => {
-
 //     e.preventDefault();
 //     validated();
-
 //     });
 
 let validated = () => {

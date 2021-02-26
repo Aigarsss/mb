@@ -1,548 +1,526 @@
-
+// Font face for social icons.
 @font-face {
-    font-family: 'icomoon';
-    src:  url('../fonts/icomoon.eot?pd9iof');
-    src:  url('../fonts/icomoon.eot?pd9iof#iefix') format('embedded-opentype'),
-      url('../fonts/icomoon.ttf?pd9iof') format('truetype'),
-      url('../fonts/icomoon.woff?pd9iof') format('woff'),
-      url('../fonts/icomoon.svg?pd9iof#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
-  
-  [class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-  
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-ic_instagram:before {
-    content: "\e900";
-  }
-  .icon-ic_youtube:before {
-    content: "\e901";
-  }
-  .icon-ic_facebook:before {
-    content: "\e902";
-  }
-  .icon-ic_twitter:before {
-    content: "\e903";
-  }
-  
+  font-family: "icomoon";
+  src: url("../fonts/icomoon.eot?pd9iof");
+  src: url("../fonts/icomoon.eot?pd9iof#iefix") format("embedded-opentype"),
+    url("../fonts/icomoon.ttf?pd9iof") format("truetype"),
+    url("../fonts/icomoon.woff?pd9iof") format("woff"),
+    url("../fonts/icomoon.svg?pd9iof#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
 
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ic_instagram:before {
+  content: "\e900";
+}
+.icon-ic_youtube:before {
+  content: "\e901";
+}
+.icon-ic_facebook:before {
+  content: "\e902";
+}
+.icon-ic_twitter:before {
+  content: "\e903";
+}
 
 //define colors
-$blue : #4066A5;
+$blue: #4066a5;
 $black: #131821;
-$darkGray: #6A707B;
-$lightGray: #E3E3E4;
-$white: #F2F5FA;
+$darkGray: #6a707b;
+$lightGray: #e3e3e4;
+$white: #f2f5fa;
 
 //mixins
 
 @mixin center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 * {
-    box-sizing: border-box;
-    padding: 0px;
-    margin: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
 }
 
 body {
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    font-family: arial;
-    // overflow: visible !important;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  font-family: arial;
+  // overflow: visible !important;
 }
 
 .right {
-    position: absolute;
-    top: 0;
-    opacity: 1;
-    height: 100%;
-    width: 100%;
-    z-index: -2;
-    background: url("../img/image_summer.png");
-    background-position-x: 0px;
-    background-position-y: -230px;
-    // background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  height: 100%;
+  width: 100%;
+  z-index: -2;
+  background: url("../img/image_summer.png");
+  background-position-x: 0px;
+  background-position-y: -230px;
+  // background-repeat: no-repeat;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    background: #FFFFFF;
-    min-height: 66px;
-    width: 100%;
-    overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  min-height: 66px;
+  width: 100%;
+  overflow: auto;
 
-    .image {
-        height: 40px;
-        width: 25px;
-        margin-top: 10px;
-        margin-left: 20px;
-        background: url("../img/logo_pineapple_mobile.svg");
-        background-repeat: no-repeat; 
-        background-position: center;
-    }
+  .image {
+    height: 40px;
+    width: 25px;
+    margin-top: 10px;
+    margin-left: 20px;
+    background: url("../img/logo_pineapple_mobile.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
-    .navbar-links {
-        ul {
-            margin:0;
-            padding:0;
-            display:flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 235px;
-            height: 100%;
-            padding-right: 10px;
+  .navbar-links {
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 235px;
+      height: 100%;
+      padding-right: 10px;
 
-            li {
-                list-style: none;
+      li {
+        list-style: none;
 
-                a {
-                    text-decoration: none;
-                    font-size: 14px;
-                    font-weight: 400;
-                    line-height: 24px;
-                    color: $darkGray;
-                    display: block;
-                    text-align: left;  
-                }
-            }
+        a {
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 24px;
+          color: $darkGray;
+          display: block;
+          text-align: left;
         }
+      }
     }
+  }
 }
 
 #container {
+  background: linear-gradient(180deg, #ffffff 0%, $white 100%);
 
-    background: linear-gradient(180deg, #FFFFFF 0%, $white 100%);
+  height: 371px;
+  width: 335px;
+  padding: 30px 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
 
-    height: 371px;
-    width: 335px;
-    // margin: 188px auto;
-    // margin-left: auto;
-    // margin-right: auto;
-    padding: 30px 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -40%);
+  #error,
+  #termsError {
+    color: #4066a5;
+    font-size: 12px;
+  }
 
-    #error, #termsError {
-        color: #4066A5;
-        // padding-top:10px;
-        font-size: 12px;
+  #successIcon {
+    width: 50px;
+    height: 70px;
+    background: url("../img/ic_success.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 39px;
+  }
+
+  h1 {
+    font-family: Georgia;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 34px;
+    color: $black;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 26px;
+    color: $darkGray;
+    margin-bottom: 20px;
+  }
+
+  form {
+    margin-bottom: 20px;
+    position: relative;
+
+    #email {
+      width: 295px;
+      height: 60px;
+      padding: 18px 49px 18px 19px;
+      border: 1px solid $lightGray;
+      border-left: 4px solid $blue;
+      color: $black;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      outline: none;
+
+      &:focus {
+        box-shadow: 0px 30px 40px 0px #131821 6%;
+      }
+
+      &:hover {
+        border: 1px solid #4066a5;
+        border-left: 4px solid $blue;
+      }
+
+      &:hover ~ #emailSubmit {
+        background: url("../img/ic_arrow_blue.svg");
+      }
     }
 
-    #successIcon {
-        width: 50px;
-        height: 70px;
-        background: url("../img/ic_success.svg");
+    button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: url("../img/ic_arrow.svg");
+      border: 0;
+      display: block;
+      width: 24px;
+      height: 14px;
+      outline: none;
+
+      &:hover {
+        background: url("../img/ic_arrow_blue.svg");
+      }
+    }
+  }
+
+  .termsarea {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    color: $darkGray;
+    margin-top: 20px;
+
+    .terms {
+      display: inline-flex;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 28px;
+
+      a {
+        color: $black;
+        margin-left: 5px;
+
+        &:hover {
+          color: $blue;
+        }
+
+        &:active {
+          color: #233759;
+          opacity: 0.5;
+        }
+      }
+
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkmark {
+          background-color: $blue;
+        }
+
+        &:checked ~ .checkmark:after {
+          display: block;
+        }
+      }
+
+      .checkmark {
+        width: 26px;
+        height: 26px;
+        background: url("../img/ic_checkmark.svg");
         background-position: center;
         background-repeat: no-repeat;
-        margin-bottom: 39px;
+        border: 1px solid $lightGray;
+        box-sizing: border-box;
+        border-radius: 3px;
+        margin-right: 20px;
 
+        &:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+      }
+    }
+  }
+
+  #socials {
+    border-top: 1px solid $lightGray;
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      width: 250px;
+      margin: 15px auto;
+
+      #successIcon {
+        margin-bottom: 30px;
+      }
     }
 
+    .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 2px solid #e2e3e4;
+    }
+
+    .icon-ic_facebook {
+      color: $black;
+      opacity: 0.4;
+      @include center;
+      text-decoration: none;
+      font-size: 16px;
+
+      &:hover {
+        color: white;
+        background: #4267b2;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+
+      &:active {
+        color: white;
+        background: #2f4a80;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+    }
+
+    .icon-ic_instagram {
+      color: $black;
+      opacity: 0.4;
+      @include center;
+      text-decoration: none;
+      font-size: 16px;
+
+      &:hover {
+        color: white;
+        background: #c13584;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+
+      &:active {
+        color: white;
+        background: #8f2762;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+    }
+
+    .icon-ic_twitter {
+      color: $black;
+      opacity: 0.4;
+      @include center;
+      text-decoration: none;
+      font-size: 16px;
+
+      &:hover {
+        color: white;
+        background: #1da1f2;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+
+      &:active {
+        color: white;
+        background: #177fbf;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+    }
+
+    .icon-ic_youtube {
+      color: $black;
+      opacity: 0.4;
+      @include center;
+      text-decoration: none;
+      font-size: 16px;
+
+      &:hover {
+        color: white;
+        background: #ff0000;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+
+      &:active {
+        color: white;
+        background: #cc0000;
+        box-shadow: 0px 20px 40px 0px #131821 30%;
+        border: none;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+@media only screen and (min-width: 1500px) {
+  body {
+    //https://stackoverflow.com/questions/40871581/position-background-image-in-the-right-half-of-the-screen
+    position: absolute;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+
+  .split {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: none;
+  }
+
+  /* Control the left side */
+  .left {
+    width: 35%;
+    left: 0;
+  }
+
+  /* Control the right side */
+  .right {
+    width: 65%;
+    right: 0;
+    background: url("../img/image_summer.png");
+    background-repeat: no-repeat;
+    z-index: -2;
+  }
+
+  .navbar {
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+
+    .image {
+      height: 40px;
+      width: 120px;
+      margin-top: 10px;
+      margin-left: 20px;
+      background: url("../img/logo_pineapple.svg");
+      background-repeat: no-repeat;
+    }
+
+    .navbar-links {
+      ul {
+        width: auto;
+        li {
+          padding-left: 30px;
+          a {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 26px;
+            letter-spacing: 0em;
+          }
+        }
+      }
+    }
+  }
+
+  #container {
+    background: none;
+    height: 371px;
+    width: 65%;
+    padding: 0px 20px;
+    margin-top: 10%;
+
     h1 {
-        font-family: Georgia;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 34px;
-        color:$black;
-        margin-bottom: 10px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 44px;
     }
 
     p {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 26px;
-        color: $darkGray;
-        margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 28px;
     }
 
     form {
-        margin-bottom: 20px;
+      margin-top: 50px;
+      position: relative;
+
+      #email {
+        width: 663px;
+        height: 70px;
+        overflow: visible;
         position: relative;
-        #email {
-            width: 295px;
-            height: 60px;
-            padding: 18px 49px 18px 19px;
-            border: 1px solid $lightGray;
-            border-left: 4px solid $blue;
-            color: $black;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 24px;
-            outline: none;
+        left: -50px;
+        padding-left: 44px;
+      }
 
-            &:focus {
-                box-shadow: 0px 30px 40px 0px #131821 6%;
-            }
+      button {
+        top: 30px;
+        right: -37%;
+      }
 
-            &:hover {
-                border: 1px solid #4066A5;
-                border-left: 4px solid $blue;
-            }
-
-
-            &:hover ~ #emailSubmit {
-                background: url("../img/ic_arrow_blue.svg");
-              }
-
-        }
-        
-        button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: url("../img/ic_arrow.svg");
-            border:0;
-            display:block;
-            width: 24px;
-            height: 14px;
-            outline: none;
-            
-            &:hover {
-                background: url("../img/ic_arrow_blue.svg");
-            }
-        }
-    }
-
-    .termsarea {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 28px;
-        color: $darkGray;
-        margin-top: 20px;
-
-
-        .terms {
-            display: inline-flex;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 28px;
-
-            a {
-                color:$black;
-                margin-left:5px;
-
-                &:hover{ 
-                    color: $blue;
-                }
-
-                &:active { 
-                    color: #233759;
-                    opacity: 0.5;
-                }
-            }
-
-            input {
-                position: absolute;
-                opacity: 0;
-                cursor: pointer;
-                height: 0;
-                width: 0;
-
-                &:checked ~ .checkmark {
-                    background-color:$blue;
-                  }
-                
-                &:checked ~ .checkmark:after {
-                    display: block;
-                }
-
-            }
-            
-            .checkmark {
-                width: 26px;
-                height: 26px;
-                background: url("../img/ic_checkmark.svg");
-                background-position: center;
-                background-repeat: no-repeat;
-                border: 1px solid $lightGray;
-                box-sizing: border-box;
-                border-radius: 3px;
-                margin-right: 20px;
-
-                &:after {
-                    content: "";
-                    position: absolute;
-                    display: none;
-                  }
-            }
-
-
-        }
+      .termsarea {
+        margin-top: 50px;
+      }
     }
 
     #socials {
-        border-top: 1px solid $lightGray;
+      margin-top: 50px;
 
-
-        .container {
-            display: flex;
-            justify-content: space-around;
-            width: 250px;
-            margin: 15px auto;
-
-            #successIcon {
-                margin-bottom: 30px;
-        
-            }
-
-        }
-
-        .icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 50%;
-            border: 2px solid #E2E3E4;
-        }
-
-        .icon-ic_facebook {
-            color: $black;
-            opacity: 0.4;
-            @include center;
-            text-decoration: none;
-            font-size: 16px;
-
-            &:hover {
-                color: white;
-                background: #4267B2;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-
-            &:active {
-                color: white;
-                background: #2F4A80;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-        }
-
-        .icon-ic_instagram {
-            color: $black;
-            opacity: 0.4;
-            @include center;
-            text-decoration: none;
-            font-size: 16px;
-
-            &:hover {
-                color: white;
-                background: #C13584;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-
-            &:active {
-                color: white;
-                background: #8F2762;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-        }
-
-        
-        .icon-ic_twitter {
-            color: $black;
-            opacity: 0.4;
-            @include center;
-            text-decoration: none;
-            font-size: 16px;
-
-            &:hover {
-                color: white;
-                background: #1DA1F2;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-
-            &:active {
-                color: white;
-                background: #177FBF;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-        }
-
-        .icon-ic_youtube {
-            color: $black;
-            opacity: 0.4;
-            @include center;
-            text-decoration: none;
-            font-size: 16px;
-
-            &:hover {
-                color: white;
-                background: #FF0000;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-
-            &:active {
-                color: white;
-                background: #CC0000;
-                box-shadow: 0px 20px 40px 0px #131821 30%;
-                border: none;
-                opacity: 1;
-            }
-        }
+      .container {
+        margin: 50px auto;
+      }
     }
-
-
-}
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 10px;
   }
-
-@media only screen and (min-width: 1500px) {
-    
-    body {
-        //https://stackoverflow.com/questions/40871581/position-background-image-in-the-right-half-of-the-screen
-        position: absolute;
-        background-position: 0 0; 
-        background-repeat:no-repeat; 
-
-    }
-
-    .split {
-        height: 100%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        overflow-x: none;
-      }
-      
-      /* Control the left side */
-      .left {
-        width: 35%;
-        left: 0;
-      }
-      
-      /* Control the right side */
-      .right {
-        width: 65%;
-        right: 0;
-        background: url("../img/image_summer.png");
-        background-repeat: no-repeat;
-        z-index: -2;
-
-      }
-
-    .navbar {
-      width: 80%;
-      margin: auto;
-      margin-top: 100px;
-
-      .image {
-        height: 40px;
-        width: 120px;
-        margin-top: 10px;
-        margin-left: 20px;
-        background: url("../img/logo_pineapple.svg");
-        background-repeat: no-repeat;
-        }
-
-        
-    .navbar-links {
-        ul {
-            width: auto;
-            li {
-                padding-left: 30px;
-                a {
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 26px;
-                    letter-spacing: 0em;
-                }
-            }
-        }
-    }
-
-    }
-
-    #container {
-
-        background: none;
-        height: 371px;
-        width: 65%;
-        padding: 0px 20px;
-        margin-top: 10%;
-
-        h1 {
-            font-style: normal;
-            font-weight: normal;
-            font-size: 32px;
-            line-height: 44px;
-        }
-
-        p {
-            font-size: 16px;
-            line-height: 28px;
-        }
-
-
-        form {
-            margin-top: 50px;
-            position: relative;
-
-            #email {
-                width: 663px;
-                height: 70px;
-                overflow: visible;
-                position: relative;
-                left: -50px;
-                padding-left: 44px;
-            }
-            
-            button {
-                top: 30px;
-                right: -37%;
-            }
-
-            .termsarea {
-                margin-top: 50px;
-            }
-        }
-
-        #socials {
-            margin-top: 50px;
-    
-            .container {
-                margin: 50px auto;
-            }
-        }
-    }
 }

@@ -24,54 +24,46 @@
 
 <body>
 
-  <nav class = "split left">
-  <nav class="navbar">
-    <div id="logo">
-      <a href="/">
-        <!-- <img src="img/logo_pineapple_mobile.svg" alt="pineapple_logo"> -->
-        <div class="image"></div>
-      </a>
-    </div>
-
-    <div class = "navbar-links">
-      <ul>
-          <li><a href="/subscribers.php" class="menu-item">About</a></li>
-          <li><a href="#" class="menu-item">How it works</a></li>
-          <li><a href="#" class="menu-item">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div id="container">
-
-    <div id="main">
-
-    <div id='successIcon'></div>
-    <h1>Thanks for subscribing!</h1>
-    <p>You have successfully subscribed to our email listing. Check your email for the discount code.</p>
-    <br>
-
-  </div>
-
-    <!-- SOCIALS -->
-    <div id = "socials">
-      <div class="container">
-        <a href="#" class="icon icon-ic_facebook"></a>
-        <a href="#" class="icon icon-ic_instagram"></a>
-        <a href="#" class="icon icon-ic_twitter"></a>
-        <a href="#" class="icon icon-ic_youtube"></a>
+  <div class = "split left">
+    <nav class="navbar">
+      <div id="logo">
+        <a href="/">
+          <!-- <img src="img/logo_pineapple_mobile.svg" alt="pineapple_logo"> -->
+          <div class="image"></div>
+        </a>
       </div>
 
-    </div>
-  </nav>
+      <div class = "navbar-links">
+        <ul>
+            <li><a href="/subscribers.php" class="menu-item">About</a></li>
+            <li><a href="#" class="menu-item">How it works</a></li>
+            <li><a href="#" class="menu-item">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
 
-  <nav class="split right">
-  </nav>
+    <div id="container">
 
+      <div id="main">
+        <div id='successIcon'></div>
+        <h1>Thanks for subscribing!</h1>
+        <p>You have successfully subscribed to our email listing. Check your email for the discount code.</p>
+        <br>
+      </div>
+
+      <!-- SOCIALS -->
+      <div id = "socials">
+        <div class="container">
+          <a href="#" class="icon icon-ic_facebook"></a>
+          <a href="#" class="icon icon-ic_instagram"></a>
+          <a href="#" class="icon icon-ic_twitter"></a>
+          <a href="#" class="icon icon-ic_youtube"></a>
+        </div>
+      </div>
   </div>
 
-
-
+  <div class="split right">
+  </div>
 
   <script src="js/main.js"></script>
 

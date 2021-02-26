@@ -7,7 +7,6 @@
         private $password = "";
         private $dbName = "mbdb";
         private $conn;
-        
 
         public function __construct() {
             try {
@@ -19,8 +18,8 @@
             }
         }
 
-        
-        // insert records
+        // insert records into DB from the landing
+
         public function insert(){
 
             if (isset($_POST['submit'])) {
@@ -30,7 +29,6 @@
                 if (sizeof($errors) > 0) {
                     return $errors;
                 }
-
 
                 if (isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['terms'])) {
                 
@@ -43,7 +41,6 @@
                         $statement = $this->conn->prepare("insert into subscribers(email, provider ) VALUES(:email, :provider)");
                         $statement->execute(['email' => $inputEmail, 'provider' => $provider]);
 
-                        // var_dump($_POST);
                         header("Location: /success.php");
                         exit();
         
@@ -54,9 +51,7 @@
                 } else {
                     // error handling
                     echo "Something went wrong";
-
                 }
-
             } 
         }
 
@@ -69,10 +64,9 @@
             $data = $statement->fetchAll();
 
             return $data;
+        }
 
-    }
-
-        //delete records
+        //delete records from DB
         public function delete($id){
 
             try {
@@ -87,7 +81,6 @@
 
         // filter buttons for subscribers.php
         public function getProviders(){
-
 
             try {
 
@@ -107,8 +100,7 @@
         // filtering for the subscribers.php page
         public function filterProvider(){
 
-
-            // need to check, otherwise throws undefined index error
+            // These need to be checked, otherwise throws undefined index error
             if (isset($_SESSION["search"])) {
                 $search = $_SESSION["search"];
             } if (isset($_SESSION["filter"])) {
@@ -119,8 +111,7 @@
                 $direction = $_SESSION["direction"];
             }
 
-
-            // reset filters
+            // reset all filters on subscribers.php
             if (isset($filter) && $filter == "Reset") {
 
                 unset($_SESSION["search"]);
@@ -134,7 +125,7 @@
 
             // case when all are set
             if (isset($search) && isset($filter) && isset($order) && isset($direction)) {
-
+                
                 $statement = $this->conn->prepare("select * from subscribers where provider = :filter and email like CONCAT('%', :search, '%') order by $order $direction");
                 $statement->execute(["filter" => $filter, "search" => $search]);
 
@@ -159,25 +150,26 @@
                 $statement = $this->conn->prepare("select * from subscribers where provider = :filter and email like CONCAT('%', :search, '%') order by date desc");
                 $statement->execute(["filter" => $filter, "search" => $search]);
 
+            // case when only search set
             } else if (isset($search)) {
                 echo "got here";
-                $statement = $this->conn->prepare("select * from subscribers where email like CONCAT('%', :search, '%') order date desc");
+                $statement = $this->conn->prepare("select * from subscribers where email like CONCAT('%', :search, '%') order by date desc");
                 $statement->execute([ "search" => $search]);
             
+            // case when only filter set (provider)
             } else if (isset($filter)) {
 
                 $statement = $this->conn->prepare("select * from subscribers where provider = :filter order by date desc");
                 $statement->execute(["filter" => $filter]);
 
+            // case when just ordering is provided
             } else if (isset($order) && isset($direction)) {
                 $statement = $this->conn->prepare("select * from subscribers order by $order $direction");
                 $statement->execute();
             }
 
             $data = $statement->fetchAll();
-
             return $data;
-
         }
 
         private function validate(){
@@ -192,10 +184,9 @@
             // - No email address is provided - “Email address is required”
             if (!isset($_POST['email']) || empty($_POST['email'])) {
                 $errors["email"] = "Missing email";
-            } else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {           // - Invalid email is added - “Please provide a valid e-mail address”
+            } else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) { // - Invalid email is added - “Please provide a valid e-mail address”
                     $errors["invalidEmail"] = "Please provide a valid e-mail address";
                     }
-
 
             // - The checkbox is not marked - “You must accept the terms and conditions”
             if (!isset($_POST['terms'])) {
@@ -203,8 +194,6 @@
             }
 
             return $errors;
-
         }
-}
-
+    }
 ?>

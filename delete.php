@@ -1,8 +1,6 @@
 
 <?php 
-
 	include 'Model.php';
-
     $model = new Model();
 	$id = $_REQUEST['id'];
 
@@ -14,6 +12,5 @@
     } catch (Exception $e) {
         die($e->getMessage());
     }   
-
 
     ?>

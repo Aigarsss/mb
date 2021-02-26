@@ -1,7 +1,9 @@
 <?php
 
 session_start();
+require 'Model.php';
 
+// Creating session variables so that multi-filtering can be used
 if (isset($_GET['search'])) {
     $_SESSION["search"] = $_GET['search'];
 } if (isset($_GET['filter'])) {
@@ -12,11 +14,9 @@ if (isset($_GET['search'])) {
     $_SESSION["direction"] = $_GET['direction'];
 }
 
-require 'Model.php';
 $model = new Model();
 
 ?>
-
 
 <!doctype html>
 <html lang="">
@@ -41,14 +41,17 @@ $model = new Model();
 
     <h1 style="margin-bottom: 15px;">Subscribers</h1>
 
-    <p> Applied filters: 
+    <p style="color:red;"> Applied filters: 
     
     <?php
 
-        foreach($_SESSION as $name => $value){
-            echo $name."=".$value." | ";
+        if (sizeof($_SESSION) == 0) {
+            echo "None";
+        } else {
+            foreach($_SESSION as $name => $value){
+                echo $name."=".$value." | ";
+            }
         }
-        // print_r($_SESSION);
 
     ?>
     
@@ -65,6 +68,8 @@ $model = new Model();
         <div> Filter: 
 
             <button type="sumbit" name = "filter" value = "Reset" style="margin: 5px; padding: 5px;">Reset</button>
+
+            <!-- Getting the filtering buttons -->
             <?php 
             $rows = $model->getProviders();
 
@@ -90,13 +95,14 @@ $model = new Model();
             <td>Action</td>
         </tr>
         
+        <!-- Getting the appropriate data from DB depending on the last entered filter -->
         <?php 
-        // should be updated to use a combo search + add sorting
-        //(isset($_GET['filter']) || isset($_GET['orderBy'])) ? $rows = $model->filterProvider() : $rows = $model->readAll(); 
 
         if (isset($_GET['filter'])) {
             $rows = $model->filterProvider();
-        } else if (isset($_GET['orderBy'])){
+        } else if (isset($_GET['orderBy']) && isset($_GET['direction'])){
+            $rows = $model->filterProvider();
+        } else if (isset($_GET['search'])){
             $rows = $model->filterProvider();
         } else {
             $rows = $model->readAll();
@@ -105,6 +111,7 @@ $model = new Model();
         if(!empty($rows)) {
             foreach($rows as $row) {
         ?>
+
         <tr>
             <td><?php echo $row->id; ?></td>
             <td><?php echo $row->date; ?></td>
@@ -113,16 +120,13 @@ $model = new Model();
             <td><a href="delete.php?id=<?php echo $row->id; ?>">Delete</a></td>
         </tr>
 
-            <?php 
+        <?php 
             }
         } else {
             echo "no data";
         }
         
         ?>
-
     </table>
-
 </body>
-
 </html>
