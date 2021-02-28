@@ -83,9 +83,9 @@ userMail.addEventListener('input', (e) => {
 //     });
 
 let validated = () => {
-    document.getElementById('main').innerHTML = 
+    document.getElementById('subscribe').innerHTML = 
     "<div id='successIcon'></div>" +
-    "<h1>Thanks for subscribing!</h1>" +
-    "<p>You have successfully subscribed to our email listing. Check your email for the discount code.</p>" +
+    "<h1 class='subscribe__heading'>Thanks for subscribing!</h1>" +
+    "<p class='subscribe__text'>You have successfully subscribed to our email listing. Check your email for the discount code.</p>" +
     "<br>"
 }
