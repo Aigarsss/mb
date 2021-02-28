@@ -39,6 +39,8 @@
   content: "\e903";
 }
 
+/////// end of fonts
+
 //define colors
 $blue: #4066a5;
 $black: #131821;
@@ -46,481 +48,452 @@ $darkGray: #6a707b;
 $lightGray: #e3e3e4;
 $white: #f2f5fa;
 
-//mixins
-
-@mixin center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-* {
+// reset
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0px;
   margin: 0px;
+  text-decoration: none;
 }
 
-body {
+.body-container {
   height: 100vh;
   width: 100%;
-  position: fixed;
   font-family: arial;
-  // overflow: visible !important;
-}
+  // background: $darkGray;
 
-.right {
-  position: absolute;
-  top: 0;
-  opacity: 1;
-  height: 100%;
-  width: 100%;
-  z-index: -2;
-  background: url("../img/image_summer.png");
-  background-position-x: 0px;
-  background-position-y: -230px;
-  // background-repeat: no-repeat;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  background: #ffffff;
-  min-height: 66px;
-  width: 100%;
-  overflow: auto;
-
-  .image {
-    height: 40px;
-    width: 25px;
-    margin-top: 10px;
-    margin-left: 20px;
-    background: url("../img/logo_pineapple_mobile.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-
-  .navbar-links {
-    ul {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      width: 235px;
-      height: 100%;
-      padding-right: 10px;
-
-      li {
-        list-style: none;
-
-        a {
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 400;
-          line-height: 24px;
-          color: $darkGray;
-          display: block;
-          text-align: left;
-        }
-      }
-    }
-  }
-}
-
-#container {
-  background: linear-gradient(180deg, #ffffff 0%, $white 100%);
-
-  height: 371px;
-  width: 335px;
-  padding: 30px 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -40%);
-
-  #error,
-  #termsError {
-    color: #4066a5;
-    font-size: 12px;
-  }
-
-  #successIcon {
-    width: 50px;
-    height: 70px;
-    background: url("../img/ic_success.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-bottom: 39px;
-  }
-
-  h1 {
-    font-family: Georgia;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 34px;
-    color: $black;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 26px;
-    color: $darkGray;
-    margin-bottom: 20px;
-  }
-
-  form {
-    margin-bottom: 20px;
-    position: relative;
-
-    #email {
-      width: 295px;
-      height: 60px;
-      padding: 18px 49px 18px 19px;
-      border: 1px solid $lightGray;
-      border-left: 4px solid $blue;
-      color: $black;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 24px;
-      outline: none;
-
-      &:focus {
-        box-shadow: 0px 30px 40px 0px #131821 6%;
-      }
-
-      &:hover {
-        border: 1px solid #4066a5;
-        border-left: 4px solid $blue;
-      }
-
-      &:hover ~ #emailSubmit {
-        background: url("../img/ic_arrow_blue.svg");
-      }
-    }
-
-    button {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: url("../img/ic_arrow.svg");
-      border: 0;
-      display: block;
-      width: 24px;
-      height: 14px;
-      outline: none;
-
-      &:hover {
-        background: url("../img/ic_arrow_blue.svg");
-      }
-    }
-  }
-
-  .termsarea {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 28px;
-    color: $darkGray;
-    margin-top: 20px;
-
-    .terms {
-      display: inline-flex;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 28px;
-
-      a {
-        color: $black;
-        margin-left: 5px;
-
-        &:hover {
-          color: $blue;
-        }
-
-        &:active {
-          color: #233759;
-          opacity: 0.5;
-        }
-      }
-
-      input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-
-        &:checked ~ .checkmark {
-          background-color: $blue;
-        }
-
-        &:checked ~ .checkmark:after {
-          display: block;
-        }
-      }
-
-      .checkmark {
-        width: 26px;
-        height: 26px;
-        background: url("../img/ic_checkmark.svg");
-        background-position: center;
-        background-repeat: no-repeat;
-        border: 1px solid $lightGray;
-        box-sizing: border-box;
-        border-radius: 3px;
-        margin-right: 20px;
-
-        &:after {
-          content: "";
-          position: absolute;
-          display: none;
-        }
-      }
-    }
-  }
-
-  #socials {
-    border-top: 1px solid $lightGray;
-
-    .container {
-      display: flex;
-      justify-content: space-around;
-      width: 250px;
-      margin: 15px auto;
-
-      #successIcon {
-        margin-bottom: 30px;
-      }
-    }
-
-    .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 2px solid #e2e3e4;
-    }
-
-    .icon-ic_facebook {
-      color: $black;
-      opacity: 0.4;
-      @include center;
-      text-decoration: none;
-      font-size: 16px;
-
-      &:hover {
-        color: white;
-        background: #4267b2;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-
-      &:active {
-        color: white;
-        background: #2f4a80;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-    }
-
-    .icon-ic_instagram {
-      color: $black;
-      opacity: 0.4;
-      @include center;
-      text-decoration: none;
-      font-size: 16px;
-
-      &:hover {
-        color: white;
-        background: #c13584;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-
-      &:active {
-        color: white;
-        background: #8f2762;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-    }
-
-    .icon-ic_twitter {
-      color: $black;
-      opacity: 0.4;
-      @include center;
-      text-decoration: none;
-      font-size: 16px;
-
-      &:hover {
-        color: white;
-        background: #1da1f2;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-
-      &:active {
-        color: white;
-        background: #177fbf;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-    }
-
-    .icon-ic_youtube {
-      color: $black;
-      opacity: 0.4;
-      @include center;
-      text-decoration: none;
-      font-size: 16px;
-
-      &:hover {
-        color: white;
-        background: #ff0000;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-
-      &:active {
-        color: white;
-        background: #cc0000;
-        box-shadow: 0px 20px 40px 0px #131821 30%;
-        border: none;
-        opacity: 1;
-      }
-    }
-  }
-}
-
-table,
-th,
-td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: 10px;
-}
-
-@media only screen and (min-width: 1500px) {
-  body {
-    //https://stackoverflow.com/questions/40871581/position-background-image-in-the-right-half-of-the-screen
-    position: absolute;
-    background-position: 0 0;
-    background-repeat: no-repeat;
-  }
-
-  .split {
+  .main-container {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: none;
-  }
 
-  /* Control the left side */
-  .left {
-    width: 35%;
-    left: 0;
-  }
+    .navbar {
+      display: flex;
+      background: #ffffff;
 
-  /* Control the right side */
-  .right {
-    width: 65%;
-    right: 0;
-    background: url("../img/image_summer.png");
-    background-repeat: no-repeat;
-    z-index: -2;
-  }
+      &__logo {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        margin-left: 20px;
+      }
 
-  .navbar {
-    width: 80%;
-    margin: auto;
-    margin-top: 100px;
+      &__image {
+        width: 25px;
+        height: 40px;
+        background: url("../img/logo_pineapple_mobile.svg");
+      }
 
-    .image {
-      height: 40px;
-      width: 120px;
-      margin-top: 10px;
-      margin-left: 20px;
-      background: url("../img/logo_pineapple.svg");
-      background-repeat: no-repeat;
+      &__items {
+        &__list {
+          display: flex;
+          list-style: none;
+
+          &__item {
+            padding: 21px 0;
+            margin-right: 20px;
+
+            &__link {
+              font-family: Arial;
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 24px;
+              letter-spacing: 0em;
+              color: $darkGray;
+            }
+
+            &:hover {
+              color: $black;
+            }
+          }
+        }
+      }
     }
 
-    .navbar-links {
-      ul {
-        width: auto;
-        li {
-          padding-left: 30px;
-          a {
+    .subscribe-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+
+      .subscribe {
+        background: linear-gradient(180deg, #ffffff 0%, #f2f5fa 100%);
+        width: 335px;
+        height: 371px;
+        min-width: 335px;
+        min-height: 371px;
+        padding: 30px 20px;
+
+        #successIcon {
+          width: 50px;
+          height: 70px;
+          background: url("../img/ic_success.svg");
+          background-position: center;
+          background-repeat: no-repeat;
+          margin-bottom: 39px;
+        }
+
+        &__heading {
+          font-family: Georgia;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 34px;
+          letter-spacing: 0em;
+          color: $black;
+          margin-bottom: 10px;
+        }
+
+        &__text {
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 26px;
+          letter-spacing: 0em;
+          color: $darkGray;
+          margin-bottom: 20px;
+        }
+
+        &__form {
+          position: relative;
+        }
+
+        &__form__inputarea {
+          position: relative;
+          &__input {
+            width: 100%;
+            padding: 18px 49px 18px 19px;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            position: relative;
+            border: 1px solid $lightGray;
+            border-left: 4px solid $blue;
+
+            &:focus {
+              box-shadow: 0px 30px 40px 0px #131821 6%;
+              outline: none;
+            }
+
+            &:hover {
+              box-shadow: 0px 30px 40px 0px #131821 6%;
+              border: 1px solid #4066a5;
+              border-left: 4px solid $blue;
+            }
+
+            &:hover ~ .subscribe__form__inputarea__button {
+              background: url("../img/ic_arrow_blue.svg");
+            }
+          }
+
+          &__button {
+            border: none;
+            outline: none;
+            position: absolute;
+            top: 40%;
+            right: 5%;
+            background: url("../img/ic_arrow.svg");
+            width: 24px;
+            height: 14px;
+
+            &:hover {
+              background: url("../img/ic_arrow_blue.svg");
+              cursor: pointer;
+            }
+          }
+        }
+
+        #error,
+        #termsError {
+          position: absolute;
+          color: $blue;
+          font-family: Arial;
+          font-size: 10px;
+          font-style: normal;
+          font-weight: 400;
+          letter-spacing: 0em;
+
+          margin: 0;
+          padding: 0;
+        }
+
+        #termsError {
+          top: 72px;
+        }
+
+        .termsarea {
+          margin-top: 20px;
+          margin-bottom: 20px;
+          .terms {
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
-            line-height: 26px;
+            line-height: 28px;
             letter-spacing: 0em;
+            color: $darkGray;
+            margin-left: 45px;
+            position: relative;
+
+            &__link {
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 28px;
+              letter-spacing: 0em;
+              text-decoration: underline;
+              color: $black;
+
+              &:hover {
+                color: $blue;
+              }
+
+              &:active {
+                color: #233759;
+              }
+            }
+
+            #termsCheckbox {
+              position: absolute;
+              opacity: 0;
+              cursor: pointer;
+              height: 0;
+              width: 0;
+
+              &:checked ~ .terms__checkbox-replace {
+                background-color: $blue;
+                background-image: url("../img/ic_checkmark.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+              }
+            }
+
+            &__checkbox-replace {
+              position: absolute;
+              background: #ffffff;
+              border: 1px solid #e3e3e4;
+              border-radius: 3px;
+              width: 26px;
+              height: 26px;
+              left: -45px;
+            }
+          }
+        }
+
+        .socials {
+          border-top: 1px solid $lightGray;
+          display: flex;
+
+          &__container {
+            width: 100%;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+
+            .icon {
+              width: 46px;
+              height: 46px;
+              border-radius: 50%;
+              border: 2px solid #e2e3e4;
+              font-size: 16px;
+              color: $black;
+              opacity: 0.4;
+              margin: 0 5px;
+            }
+
+            [class*="icon-ic_"] {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              &:hover,
+              &:active {
+                color: white;
+                box-shadow: 0px 20px 40px 0px #131821 30%;
+                border: none;
+                opacity: 1;
+              }
+            }
+
+            .icon-ic_facebook {
+              &:hover {
+                background: #4267b2;
+              }
+
+              &:active {
+                background: #2f4a80;
+              }
+            }
+
+            .icon-ic_instagram {
+              &:hover {
+                background: #c13584;
+              }
+
+              &:active {
+                background: #8f2762;
+              }
+            }
+
+            .icon-ic_twitter {
+              &:hover {
+                background: #1da1f2;
+              }
+
+              &:active {
+                background: #177fbf;
+              }
+            }
+            .icon-ic_youtube {
+              &:hover {
+                background: #ff0000;
+              }
+
+              &:active {
+                background: #cc0000;
+              }
+            }
           }
         }
       }
     }
   }
 
-  #container {
-    background: none;
-    height: 371px;
-    width: 65%;
-    padding: 0px 20px;
-    margin-top: 10%;
+  .background-container {
+    min-height: 100%;
+    min-width: 1080px;
 
-    h1 {
-      font-style: normal;
-      font-weight: normal;
-      font-size: 32px;
-      line-height: 44px;
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background: url("../img/image_summer.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+  }
+}
+
+@media (min-width: 1400px) {
+  .body-container {
+    display: flex;
+    flex-direction: row;
+
+    .main-container {
+      width: 680px;
+      .navbar {
+        margin: 100px 100px 0 100px;
+        &__logo {
+          display: flex;
+          align-items: center;
+        }
+
+        &__image {
+          height: 40px;
+          width: 118px;
+          background: url("../img/logo_pineapple.svg");
+        }
+
+        &__items {
+          &__list {
+            // justify-content: flex-end;
+
+            &__item {
+              padding-left: 30px;
+              margin: 0px;
+              &__link {
+                font-family: Arial;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 26px;
+                letter-spacing: 0em;
+              }
+            }
+          }
+        }
+      }
+
+      .subscribe-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        .subscribe {
+          background: #ffffff;
+          width: 400px;
+          padding: 0;
+          margin: auto;
+
+          &__heading {
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 44px;
+            letter-spacing: 0em;
+            margin-bottom: 15px;
+          }
+
+          &__text {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 0em;
+            margin-bottom: 50px;
+          }
+
+          &__form__inputarea {
+            margin-top: 50px;
+            margin-bottom: 53px;
+            position: relative;
+            &__input {
+              position: relative;
+              padding: 23px 392px 23px 44px;
+              left: -50px;
+              width: 660px;
+            }
+
+            &__button {
+              right: -175px;
+            }
+          }
+
+          #error {
+            top: 80px;
+          }
+
+          #termsError {
+            top: 100px;
+          }
+
+          .termsarea {
+            margin-bottom: 50px;
+          }
+
+          .socials {
+            padding-top: 50px;
+            &__container {
+              .icon {
+                margin: 0 10px;
+              }
+            }
+          }
+        }
+      }
     }
 
-    p {
-      font-size: 16px;
-      line-height: 28px;
-    }
-
-    form {
-      margin-top: 50px;
-      position: relative;
-
-      #email {
-        width: 663px;
-        height: 70px;
-        overflow: visible;
-        position: relative;
-        left: -50px;
-        padding-left: 44px;
-      }
-
-      button {
-        top: 30px;
-        right: -37%;
-      }
-
-      .termsarea {
-        margin-top: 50px;
-      }
-    }
-
-    #socials {
-      margin-top: 50px;
-
-      .container {
-        margin: 50px auto;
-      }
+    .background-container {
+      position: static;
+      min-width: initial;
+      flex: 2;
     }
   }
 }

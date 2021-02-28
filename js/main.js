@@ -64,7 +64,7 @@ userMail.addEventListener('input', (e) => {
     }
 
     if (messages.length > 0) {
-        errorElement.innerHTML = messages.join(", </br>")
+        errorElement.innerHTML = messages.join(", ")
     } else {
         errorElement.style.visibility = "hidden";
         
