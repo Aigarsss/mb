@@ -35,6 +35,14 @@ $model = new Model();
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
   <link rel="stylesheet" href="style/style.css">
 
+  <style>
+  table, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px 15px;
+  }
+  </style>
+
 </head>
 
 <body style ="overflow: scroll; position: static; margin: 15px;">
