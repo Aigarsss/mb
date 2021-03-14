@@ -1,10 +1,3 @@
-<?php
-
-$model = new Model();
-$insert = $model->insert();
-
-?>
-
 <!doctype html>
 <html lang="">
 
@@ -47,13 +40,46 @@ $insert = $model->insert();
 
       <div class="subscribe-container">
 
+        
         <div class="subscribe">
-          
-          <div id='successIcon'></div>
-          <h1 class="subscribe__heading">Thanks for subscribing!</h1>
-          <p class="subscribe__text">You have successfully subscribed to our email listing. Check your email for the discount code.</p>
-          <br>
+          <div  id="subscribe">
 
+            <h1 class="subscribe__heading">Subscribe to newsletter</h1>
+            <p class="subscribe__text">Subscribe to our newsletter and get 10% discount on pineapple glasses.</p>
+
+
+            <!-- FORM -->
+            <form id="form" action="" method="POST" class="subscribe__form">
+              <div class="subscribe__form__inputarea">
+                <input id="email" type="email" placeholder="Type your email address here..." name="email" class="subscribe__form__inputarea__input">
+                <button name="submit" type="submit" id="emailSubmit" class="subscribe__form__inputarea__button"></button>
+              </div>
+              
+              <div id="error">
+                <?php 
+                if (is_array($insert)){
+                  if (count($insert) > 0) {
+                    foreach($insert as $error) {
+                      echo $error . " <br>";
+                    }
+                  }
+                }
+
+                ?>
+              </div>
+
+              <div id="termsError"></div>
+            
+              <div class="termsarea">
+                <label class="terms" for="termsCheckbox">
+                  <input id="termsCheckbox" type="checkbox" name="terms" id="terms" value="checked" class="terms__checkbox">
+                  <span class="terms__checkbox-replace"></span> I agree to <a href="#" class="terms__link">terms of service</a>
+                </label>
+              </div>
+
+            </form>
+          </div>
+          
           <!-- SOCIALS -->
           <div class = "socials">
             <div class="socials__container">

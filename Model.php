@@ -1,6 +1,6 @@
 <?php
 
-    Class Model{
+    Class Model {
 
         private $host = "localhost";
         private $userName = "root";
@@ -9,9 +9,12 @@
         private $conn;
 
         public function __construct() {
+
+
             try {
                 $this->conn = new PDO('mysql:host='. $this->host .';dbname='. $this->dbName, $this->userName, $this->password);
                 $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+                $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             } catch (exception $e) {
                 echo "connection failed" . $e->getMessage();
@@ -26,7 +29,7 @@
      
                 $errors = $this->validate();
                 // - Return the errors
-                if (sizeof($errors) > 0) {
+                if (count($errors) > 0) {
                     return $errors;
                 }
 
