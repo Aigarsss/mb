@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 require 'Model.php';
 
 // Creating session variables so that multi-filtering can be used
@@ -65,7 +64,7 @@ $model = new Model();
     
     </p>
 
-    <a href="/index.php">Back</a>
+    <a href="/">Back</a>
 
     <form action="" method="GET" style="margin-bottom: 15px; padding: 5px;">
         <input type="text" name="search" placeholder="Search..." style="padding: 5px;">

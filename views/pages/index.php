@@ -1,24 +1,6 @@
-<!doctype html>
-<html lang="">
-
-<head>
-  <meta charset="utf-8">
-  <title>Pineapple Inc</title>
-  <meta name="description" content="Buy your pineapple sunglasses here">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="stylesheet" href="style/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-</head>
-
-<body class="body-container">
+<?php 
+include("views/inc/header.inc.php");
+?>
 
   <div class = "main-container">
     
@@ -31,7 +13,7 @@
 
       <div class = "navbar__items">
         <ul class = "navbar__items__list">
-            <li class = "navbar__items__list__item"><a href="/subscribers.php" class="navbar__items__list__item__link">About</a></li>
+            <li class = "navbar__items__list__item"><a href="/pages/subscribers" class="navbar__items__list__item__link">About</a></li>
             <li class = "navbar__items__list__item"><a href="#" class="navbar__items__list__item__link">How it works</a></li>
             <li class = "navbar__items__list__item"><a href="#" class="navbar__items__list__item__link">Contact</a></li>
         </ul>
@@ -57,9 +39,9 @@
               
               <div id="error">
                 <?php 
-                if (is_array($insert)){
-                  if (count($insert) > 0) {
-                    foreach($insert as $error) {
+                if (is_array($data["errors"])){
+                  if (count($data["errors"]) > 0) {
+                    foreach($data["errors"] as $error) {
                       echo $error . " <br>";
                     }
                   }
@@ -94,11 +76,8 @@
       </div>
   </div>
 
-
   <div class="background-container"></div>
 
-  <script src="js/main.js"></script>
-
-</body>
-
-</html>
+<?php 
+include("views/inc/footer.inc.php");
+?>
