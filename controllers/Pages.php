@@ -73,21 +73,37 @@ class Pages extends Controller {
             unset($_SESSION["direction"]);
         }
 
-        $data['rows'] = $this->connection->getAllSubs(); // to do, this is for everyhting
-        // filtering
+        
+        //// filtering
 
-        // if (isset($_GET['filter'])) {
-        //     $rows = $model->filterProvider();
-        // } else if (isset($_GET['orderBy']) && isset($_GET['direction'])){
-        //     $rows = $model->filterProvider();
-        // } else if (isset($_GET['search'])){
-        //     $rows = $model->filterProvider();
-        // } else {
-        //     $rows = $page->connection->getAllSubs();;
-        // }
+        // case when all are set
+
+        // case when provider + order set
+
+        // case when search + order set
+
+        // case when provider + search set
+
+        // case when only search set
 
 
-        // delete logic
+        if (isset($_SESSION["filter"])) {
+            // case when only filter set (provider) 
+            $sql = "select * from subscribers where provider = :filter order by date desc";
+            $data['rows'] = $this->connection->filterProvider($sql, ":filter", $_SESSION["filter"]);
+        } 
+            // case when just ordering is provided
+  
+
+            else {
+            // else 
+            $data['rows'] = $this->connection->getAllSubs();
+        }
+
+
+
+
+        //// delete entry logic
 
         if (isset($_GET['deleteId'])) {
             $this->connection->deleteSub($_GET['deleteId']);
