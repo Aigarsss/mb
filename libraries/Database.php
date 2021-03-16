@@ -52,13 +52,19 @@ class Database {
         return $data;
     }
 
-    public function filterProvider($sql, $pram, $value) {
+    public function filterProvider($sql, $params) {
 
         $statement = $this->dbh->prepare($sql);
-        $statement->bindParam($pram, $value, PDO::PARAM_STR);
+        $this->bindValues($statement, $params);
         $statement->execute();
         $data = $statement->fetchAll();
         return $data;
+    }
+
+    public function bindValues($statement, $params) {
+        foreach ($params as $key => $param) {
+            $statement->bindParam($key, $param, PDO::PARAM_STR);
+        }
     }
     
 }
