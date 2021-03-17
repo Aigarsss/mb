@@ -84,7 +84,7 @@ class Pages extends Controller {
             exit();
         }
 
-        echo var_dump($_SESSION);
+        // echo var_dump($_SESSION);
 
         
         //// filtering
@@ -93,7 +93,7 @@ class Pages extends Controller {
         $params = [];
 
 
-        if (($_SESSION["search"]) && ($_SESSION["filter"]) && isset($_SESSION["direction"]) && isset($_SESSION["order"])) {
+        if (isset($_SESSION["search"]) && isset($_SESSION["filter"]) && isset($_SESSION["direction"]) && isset($_SESSION["order"])) {
 
             // case when all are set
             $order = $_SESSION["order"];
@@ -104,7 +104,7 @@ class Pages extends Controller {
             $data['rows'] = $this->connection->filterProvider($sql, $params);
 
 
-        } else if (($_SESSION["filter"]) && isset($_SESSION["direction"]) && isset($_SESSION["order"])) {
+        } else if (isset($_SESSION["filter"]) && isset($_SESSION["direction"]) && isset($_SESSION["order"])) {
 
             // case when provider + order set
             $order = $_SESSION["order"];
