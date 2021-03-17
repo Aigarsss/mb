@@ -55,16 +55,9 @@ class Database {
     public function filterProvider($sql, $params) {
 
         $statement = $this->dbh->prepare($sql);
-        $this->bindValues($statement, $params);
-        $statement->execute();
+        $statement->execute($params);
         $data = $statement->fetchAll();
         return $data;
-    }
-
-    public function bindValues($statement, $params) {
-        foreach ($params as $key => $param) {
-            $statement->bindParam($key, $param, PDO::PARAM_STR);
-        }
     }
     
 }

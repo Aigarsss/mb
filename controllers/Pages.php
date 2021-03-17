@@ -62,23 +62,19 @@ class Pages extends Controller {
 
         if (isset($_GET['search'])) {
             $_SESSION["search"] = $_GET['search'];
-            $search = $_SESSION["search"];
         }
         if (isset($_GET['filter'])) {
             $_SESSION["filter"] = $_GET['filter'];
-            $filter = $_SESSION["filter"];
         }
         if (isset($_GET['orderBy'])) {
             $_SESSION["order"] = $_GET['orderBy'];
-            $order = $_SESSION["order"];
         }
         if (isset($_GET['direction'])) {
             $_SESSION["direction"] = $_GET['direction'];
-            $direction = $_SESSION["direction"];
         }
 
         // reset session on filter "Reset"
-        if (isset($filter) && $filter == "Reset") {
+        if (isset($_SESSION["filter"]) && $_SESSION["filter"] == "Reset") {
             unset($_SESSION["search"]);
             unset($_SESSION["filter"] );
             unset($_SESSION["order"]);
@@ -93,58 +89,67 @@ class Pages extends Controller {
         
         //// filtering
 
-        // set params, that will be used for filtering and runnin queries
+        // set params, that will be used for filtering and running queries
         $params = [];
 
 
-        if (isset($filter) && isset($direction) && isset($order) && isset($search)) {
+        if (($_SESSION["search"]) && ($_SESSION["filter"]) && isset($_SESSION["direction"]) && isset($_SESSION["order"])) {
 
             // case when all are set
-            $sql = "select * from subscribers where provider = :filter and email like CONCAT('%', :search, '%') order by $ord $dir";
-            $params[":filter"] = $filter;
-            $params[":search"] = $search;
+            $order = $_SESSION["order"];
+            $direction = $_SESSION["direction"];
+            $sql = "select * from subscribers where provider = :filter and email like CONCAT('%', :search, '%') order by $order $direction";
+            $params[":filter"] = $_SESSION["filter"];
+            $params[":search"] = $_SESSION["search"];
             $data['rows'] = $this->connection->filterProvider($sql, $params);
 
 
-        } else if (isset($filter) && isset($direction) && isset($order)) {
+        } else if (($_SESSION["filter"]) && isset($_SESSION["direction"]) && isset($_SESSION["order"])) {
 
             // case when provider + order set
-            $sql = "select * from subscribers where provider = :filter order by $ord $dir";
-            $params[":filter"] = $filter;
+            $order = $_SESSION["order"];
+            $direction = $_SESSION["direction"];
+            $sql = "select * from subscribers where provider = :filter order by $order $direction";
+            $params[":filter"] = $_SESSION["filter"];
             $data['rows'] = $this->connection->filterProvider($sql, $params);
 
-        } else if (isset($search) && isset($direction) && isset($order)) {
+        } else if (isset($_SESSION["search"]) && isset($_SESSION["direction"]) && isset($_SESSION["order"])) {
             
             // case when search + order set
-            $sql = "select * from subscribers where email like CONCAT('%', :search, '%') order by $ord $dir";
-            $params[":search"] = $search;
+            $order = $_SESSION["order"];
+            $direction = $_SESSION["direction"];
+            $sql = "select * from subscribers where email like CONCAT('%', :search, '%') order by $order $direction";
+            $params[":search"] = $_SESSION["search"];
             $data['rows'] = $this->connection->filterProvider($sql, $params);
 
-        } else if (isset($search) && isset($filter)) {
-
+        } else if (isset($_SESSION["search"]) && isset($_SESSION["filter"])) {
+ 
             // case when provider + search set
             $sql = "select * from subscribers where provider = :filter and email like CONCAT('%', :search, '%') order by date desc";
-            $params[":search"] = $search;
-            $params[":filter"] = $filter;
+            $params[":search"] = $_SESSION["search"];
+            $params[":filter"] = $_SESSION["filter"];
             $data['rows'] = $this->connection->filterProvider($sql, $params);
 
-        } else if (isset($search)) {
+        } else if (isset($_SESSION["search"])) {
 
             // case when only search set
             $sql = "select * from subscribers where email like CONCAT('%', :search, '%') order by date desc";
-            $params[":search"] = $search;
+            $params[":search"] = $_SESSION["search"];
             $data['rows'] = $this->connection->filterProvider($sql, $params);
 
-        } else if (isset($filter) && $filter != "Reset") {
+        } else if (isset($_SESSION["filter"]) && $_SESSION["filter"] != "Reset") {
+
 
             // case when only filter set (provider) and it is not "Reset"
             $sql = "select * from subscribers where provider = :filter order by date desc";
-            $params[":filter"] = $filter;
+            $params[":filter"] = $_SESSION["filter"];
             $data['rows'] = $this->connection->filterProvider($sql, $params);
 
-        } else if (isset($order) && isset($direction)) {
+        } else if (isset($_SESSION["order"]) && isset($_SESSION["direction"])) {
 
             // case when just ordering is provided
+            $order = $_SESSION["order"];
+            $direction = $_SESSION["direction"];
 
             $sql = "select * from subscribers order by $order $direction";
             $data['rows'] = $this->connection->filterProvider($sql, $params);
